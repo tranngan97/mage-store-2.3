@@ -14,6 +14,7 @@ use Magento\Framework\App\Config\ScopeConfigInterface;
  */
 class News extends Template
 {
+    protected $_template = 'MageStore_CustomWidget::widget/news.phtml';
     /**
      * @var CollectionFactory
      */

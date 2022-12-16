@@ -18,7 +18,7 @@ use Magento\Framework\View\Result\PageFactory;
 /**
  *
  */
-class SyncRates extends Action
+class SyncNews extends Action
 {
     /**
      * @var PageFactory
@@ -62,38 +62,32 @@ class SyncRates extends Action
             'verify_peer_name' => false
         ]]);
         $xmlContent = file_get_contents(
-            $this->scopeConfig->getValue('widget/currency/url'),
+            $this->scopeConfig->getValue('widget/news/url'),
             false,
             $ctx
         );
         $content = json_encode(simplexml_load_string($xmlContent));
         $xmlArray = json_decode($content, true);
-        $currencyDataArray = [];
-        foreach ($xmlArray['Exrate'] as $currencyData) {
-            foreach ($currencyData as $data) {
-                $currencyDataArray[] = [
-                    'code' => $data['CurrencyCode'],
-                    'name' => trim($data['CurrencyName']),
-                    'buy' => $data['Buy'],
-                    'transfer' => $data['Transfer'],
-                    'sell' => $data['Sell'],
-                ];
-            }
-        }
-
+        $newsArray = $xmlArray['channel']['item'];
         $connection = $this->resourceConnection->getConnection();
-        $connection->truncateTable('exchange_currency_rates');
+        $connection->truncateTable('business_news');
+        $connection->beginTransaction();
         try {
-            $connection->insertMultiple(
-                'exchange_currency_rates',
-                $currencyDataArray
-            );
-            $this->messageManager->addSuccessMessage(__('Exchange rates update successful.'));
+            foreach ($newsArray as $news) {
+                $news['description'] = !empty($news['description']) ? $news['description'] : '';
+                $connection->insert(
+                    'business_news',
+                    $news
+                );
+            }
+            $connection->commit();
+            $this->messageManager->addSuccessMessage(__('Business news update successful.'));
         } catch (Exception $exception) {
             $this->messageManager->addErrorMessage(__($exception->getMessage()));
         }
 
-        return $this->resultRedirectFactory->create()->setPath('*');
+        $resultRedirect = $this->resultRedirectFactory->create();
+        return $resultRedirect->setPath('*/*/*');
     }
 
     /**
@@ -101,6 +95,6 @@ class SyncRates extends Action
      */
     protected function _isAllowed()
     {
-        return $this->_authorization->isAllowed('MageStore_CustomWidget::exchange_currency');
+        return $this->_authorization->isAllowed('MageStore_CustomWidget::business_news');
     }
 }

@@ -1,4 +1,4 @@
-.widget-index-currency {
+.widget-index-currency, .page-layout-2columns-right {
     .currency-data-table {
         table, th, td {
             border: 1px solid black;
@@ -6,7 +6,7 @@
     }
 }
 
-.widget-index-news {
+.widget-index-news, .page-layout-2columns-right {
     .business-news {
         .item {
             margin: 1% 0;
@@ -56,3 +56,25 @@
         }
     }
 }
+
+#scroll-container {
+    overflow: hidden;
+}
+
+#scroll-text {
+    /* animation properties */
+    width: max-content;
+    transform: translateX(100%);
+    animation: my-animation 45s linear infinite;
+    color: darkgreen;
+}
+
+@keyframes my-animation {
+    from {
+        transform: translateX(100%);
+    }
+    to {
+        transform: translateX(-100%);
+    }
+}
+

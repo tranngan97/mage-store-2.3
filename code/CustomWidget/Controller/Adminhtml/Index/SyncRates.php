@@ -18,7 +18,7 @@ use Magento\Framework\View\Result\PageFactory;
 /**
  *
  */
-class SyncNews extends Action
+class SyncRates extends Action
 {
     /**
      * @var PageFactory
@@ -62,31 +62,38 @@ class SyncNews extends Action
             'verify_peer_name' => false
         ]]);
         $xmlContent = file_get_contents(
-            $this->scopeConfig->getValue('widget/news/url'),
+            $this->scopeConfig->getValue('widget/currency/url'),
             false,
             $ctx
         );
         $content = json_encode(simplexml_load_string($xmlContent));
         $xmlArray = json_decode($content, true);
-        $newsArray = $xmlArray['channel']['item'];
-        $connection = $this->resourceConnection->getConnection();
-        $connection->truncateTable('business_news');
-        $connection->beginTransaction();
-        try {
-            foreach ($newsArray as $news) {
-                $news['description'] = !empty($news['description']) ? $news['description'] : '';
-                $connection->insert(
-                    'business_news',
-                    $news
-                );
+        $currencyDataArray = [];
+        foreach ($xmlArray['Exrate'] as $currencyData) {
+            foreach ($currencyData as $data) {
+                $currencyDataArray[] = [
+                    'code' => $data['CurrencyCode'],
+                    'name' => trim($data['CurrencyName']),
+                    'buy' => $data['Buy'],
+                    'transfer' => $data['Transfer'],
+                    'sell' => $data['Sell'],
+                ];
             }
-            $connection->commit();
-            $this->messageManager->addSuccessMessage(__('Business news update successful.'));
+        }
+
+        $connection = $this->resourceConnection->getConnection();
+        $connection->truncateTable('exchange_currency_rates');
+        try {
+            $connection->insertMultiple(
+                'exchange_currency_rates',
+                $currencyDataArray
+            );
+            $this->messageManager->addSuccessMessage(__('Exchange rates update successful.'));
         } catch (Exception $exception) {
             $this->messageManager->addErrorMessage(__($exception->getMessage()));
         }
 
-        return $this->resultRedirectFactory->create()->setPath('*');
+        return $this->resultRedirectFactory->create()->setPath('*/*/');
     }
 
     /**
@@ -94,6 +101,6 @@ class SyncNews extends Action
      */
     protected function _isAllowed()
     {
-        return $this->_authorization->isAllowed('MageStore_CustomWidget::business_news');
+        return $this->_authorization->isAllowed('MageStore_CustomWidget::exchange_currency');
     }
 }

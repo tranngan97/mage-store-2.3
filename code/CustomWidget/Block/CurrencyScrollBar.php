@@ -9,8 +9,9 @@ use MageStore\CustomWidget\Model\ResourceModel\Rates\CollectionFactory;
 /**
  * Currency rates block
  */
-class Currency extends Template
+class CurrencyScrollBar extends Template
 {
+    protected $_template = 'MageStore_CustomWidget::widget/currency_scroll_bar.phtml';
     /**
      * @var CollectionFactory
      */
@@ -36,5 +37,14 @@ class Currency extends Template
     public function getCurrencyRates()
     {
         return $this->rateFactory->create();
+    }
+
+    public function getRatesHtml()
+    {
+        $html = '';
+        foreach ($this->getCurrencyRates() as $rate) {
+            $html = $html. ' '. $rate['code'] . ':' . ' Sell/Buy ' . $rate['sell'] . '/' . $rate['buy'];
+        }
+        return $html;
     }
 }
