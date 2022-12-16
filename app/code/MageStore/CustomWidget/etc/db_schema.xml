@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="open_weather_city_list">
+        <column xsi:type="int" name="entity_id" identity="true" padding="20" unsigned="true" nullable="false" comment="Entity Id"/>
+        <column xsi:type="varchar" name="city_id" length="255" nullable="true" comment="City Id"/>
+        <column xsi:type="varchar" name="city_name" length="255" nullable="true" comment="City Name"/>
+        <column xsi:type="varchar" name="country_id" length="255" nullable="true" comment="Country ID"/>
+        <column xsi:type="varchar" name="state" length="255" nullable="true" comment="State"/>
+        <column xsi:type="varchar" name="lat" length="255" nullable="true" comment="Latitude"/>
+        <column xsi:type="varchar" name="lon" length="255" nullable="true" comment="Longitude"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="entity_id"/>
+        </constraint>
+    </table>
+
+    <table name="exchange_currency_rates">
+        <column xsi:type="int" name="entity_id" identity="true" padding="20" unsigned="true" nullable="false" comment="Entity Id"/>
+        <column xsi:type="varchar" name="name" length="255" nullable="true" comment="Currency Name"/>
+        <column xsi:type="varchar" name="code" length="255" nullable="true" comment="Currency Code"/>
+        <column xsi:type="varchar" name="buy" length="255" nullable="true" comment="Buy Rate"/>
+        <column xsi:type="varchar" name="transfer" length="255" nullable="true" comment="Transfer Rate"/>
+        <column xsi:type="varchar" name="sell" length="255" nullable="true" comment="Sell Rate"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="entity_id"/>
+        </constraint>
+    </table>
+
+    <table name="business_news">
+        <column xsi:type="int" name="entity_id" identity="true" padding="20" unsigned="true" nullable="false" comment="Entity Id"/>
+        <column xsi:type="varchar" name="title" length="255" nullable="true" comment="News Title"/>
+        <column xsi:type="varchar" name="description" length="255" nullable="true" comment="News Description"/>
+        <column xsi:type="varchar" name="pubdate" length="255" nullable="true" comment="News Pubdate"/>
+        <column xsi:type="varchar" name="link" length="255" nullable="true" comment="News Link"/>
+        <column xsi:type="varchar" name="guid" length="255" nullable="true" comment="News GUID"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="entity_id"/>
+        </constraint>
+    </table>
+</schema>

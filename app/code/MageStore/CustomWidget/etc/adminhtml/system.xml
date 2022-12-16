@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="magestore" translate="label" sortOrder="10">
+            <label>MageStore</label>
+        </tab>
+        <section id="widget" translate="label" sortOrder="160" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>Widget</label>
+            <tab>magestore</tab>
+            <resource>MageStore_Widget::configuration</resource>
+            <group id="weather" translate="label" type="text" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Weather Widget</label>
+                <field id="api_url" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>API Url</label>
+                </field>
+                <field id="api_key" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>API Key</label>
+                </field>
+                <field id="unit" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Default Metric Unit</label>
+                    <source_model>MageStore\CustomWidget\Model\Config\Source\Weather\Unit</source_model>
+                </field>
+                <field id="city" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Default City</label>
+                    <source_model>MageStore\CustomWidget\Model\Config\Source\Weather\City</source_model>
+                </field>
+                <field id="script" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Script JS Url</label>
+                </field>
+                <field id="exclude" translate="label" type="multiselect" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Exclude</label>
+                    <source_model>MageStore\CustomWidget\Model\Config\Source\Weather\Exclude</source_model>
+                </field>
+            </group>
+
+            <group id="currency" translate="label" type="text" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Currency Rates</label>
+                <field id="url" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Currency Document Url</label>
+                </field>
+            </group>
+
+            <group id="news" translate="label" type="text" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Business News</label>
+                <field id="url" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Business News Document Url</label>
+                </field>
+                <field id="limit" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Business News Pager Limit</label>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+
+    <!-- Product Service -->
+    <route url="/V1/widget/weather" method="GET">
+        <service class="MageStore\CustomWidget\Api\WeatherStateInterface" method="getByLatLong"/>
+        <resources>
+            <resource ref="MageStore_CustomWidget::widget" />
+        </resources>
+    </route>
+
+    <route url="/V1/widget/currency/rates" method="GET">
+        <service class="MageStore\CustomWidget\Api\CurrencyConverterInterface" method="getAllRate"/>
+        <resources>
+            <resource ref="MageStore_CustomWidget::widget" />
+        </resources>
+    </route>
+
+    <route url="/V1/widget/news" method="GET">
+        <service class="MageStore\CustomWidget\Api\BusinessNewsInterface" method="getNewsList"/>
+        <resources>
+            <resource ref="MageStore_CustomWidget::widget" />
+        </resources>
+    </route>
+</routes>
