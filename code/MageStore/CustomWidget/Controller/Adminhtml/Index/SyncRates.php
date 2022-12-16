@@ -67,10 +67,11 @@ class SyncRates extends \Magento\Backend\App\Action
             }
         }
 
+        $connection = $this->resourceConnection->getConnection();
+        $connection->truncateTable('exchange_currency_rates');
         try {
-            $this->resourceConnection->getConnection()->insertMultiple(
+            $connection->insertMultiple(
                 'exchange_currency_rates',
-                [],
                 $currencyDataArray
             );
             $this->messageManager->addSuccessMessage(__('Exchange rates update successful.'));

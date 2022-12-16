@@ -10,9 +10,9 @@ $rates = $block->getCurrencyRates();
         <td><span><?= __('Sell')?></span></td>
     </thead>
     <tbody>
-        <?php foreach ($rates as $code => $rate) :?>
+        <?php foreach ($rates as $rate) :?>
             <tr>
-                <td><?= $code ?></td>
+                <td><?= $rate['code'] ?></td>
                 <td><?= $rate['name'] ?></td>
                 <td><?= $rate['buy'] ?></td>
                 <td><?= $rate['transfer'] ?></td>
