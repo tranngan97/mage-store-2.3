@@ -9,28 +9,49 @@
 .widget-index-news {
     .business-news {
         .item {
-            margin:1% 0;
+            margin: 1% 0;
             background-color: #a5a5a570;
             padding: 2%;
+
             .news-item {
                 text-decoration: none !important;
                 display: flex;
                 color: #333;
+
                 .news-image {
                     width: 30%;
                 }
+
                 .news-content {
                     width: 70%;
                     position: relative;
+
                     .title {
                         font-weight: 700;
                         font-size: 2rem;
                     }
+
                     .pubDate {
                         position: absolute;
                         bottom: 0;
                     }
                 }
+            }
+        }
+    }
+
+    .pager {
+        margin-left: 35%;
+
+        .pages {
+            a.page {
+                color: #6c6c6c !important;
+            }
+
+            strong.page {
+                background-color: #5aa5d9;
+                padding: 0 10px;
+                color: white;
             }
         }
     }

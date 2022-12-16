@@ -1,33 +1,38 @@
 <?php
+
 namespace MageStore\CustomWidget\Block;
+
+use Magento\Framework\View\Element\Template;
 use Magento\Framework\View\Element\Template\Context;
-use MageStore\CustomWidget\Model\CurrencyConvertProcessor;
 use MageStore\CustomWidget\Model\ResourceModel\Rates\CollectionFactory;
 
 /**
  * Currency rates block
  */
-class Currency extends \Magento\Framework\View\Element\Template
+class Currency extends Template
 {
-    protected $currencyConvertProcessor;
+    /**
+     * @var CollectionFactory
+     */
     protected $rateFactory;
 
     /**
      * @param Context $context
-     * @param CurrencyConvertProcessor $currencyConvertProcessor
      * @param array $data
      */
     public function __construct(
-        \Magento\Framework\View\Element\Template\Context $context,
-        CurrencyConvertProcessor                         $currencyConvertProcessor,
-        CollectionFactory $rateFactory,
-        array                                            $data = []
-    ) {
-        $this->currencyConvertProcessor = $currencyConvertProcessor;
+        Context                  $context,
+        CollectionFactory        $rateFactory,
+        array                    $data = []
+    )
+    {
         $this->rateFactory = $rateFactory;
         parent::__construct($context, $data);
     }
 
+    /**
+     * @return mixed
+     */
     public function getCurrencyRates()
     {
         return $this->rateFactory->create();

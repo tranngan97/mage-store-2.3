@@ -24,7 +24,8 @@ class InsertCityData implements DataPatchInterface
      */
     public function __construct(
         ResourceConnection $resourceConnection
-    ) {
+    )
+    {
         $this->resourceConnection = $resourceConnection;
     }
 

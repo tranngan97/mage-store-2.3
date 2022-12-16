@@ -3,8 +3,11 @@
  * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
+
 namespace MageStore\CustomWidget\Model\Config\Source\Weather;
-class Unit implements \Magento\Framework\Option\ArrayInterface
+use Magento\Framework\Option\ArrayInterface;
+
+class Unit implements ArrayInterface
 {
     /**
      * Options getter

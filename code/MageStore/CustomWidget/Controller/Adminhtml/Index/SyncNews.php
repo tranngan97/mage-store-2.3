@@ -4,17 +4,30 @@
  * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
+
 namespace MageStore\CustomWidget\Controller\Adminhtml\Index;
+
+use Exception;
+use Magento\Backend\App\Action;
+use Magento\Backend\App\Action\Context;
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Framework\App\ResourceConnection;
+use Magento\Framework\Controller\ResultInterface;
+use Magento\Framework\View\Result\PageFactory;
 
-class SyncNews extends \Magento\Backend\App\Action
+/**
+ *
+ */
+class SyncNews extends Action
 {
     /**
-     * @var \Magento\Framework\View\Result\PageFactory
+     * @var PageFactory
      */
     protected $resultPageFactory;
 
+    /**
+     * @var ScopeConfigInterface
+     */
     protected $scopeConfig;
 
     /**
@@ -23,15 +36,16 @@ class SyncNews extends \Magento\Backend\App\Action
     protected $resourceConnection;
 
     /**
-     * @param \Magento\Backend\App\Action\Context $context
-     * @param \Magento\Framework\View\Result\PageFactory $resultPageFactory
+     * @param Context $context
+     * @param PageFactory $resultPageFactory
      */
     public function __construct(
-        \Magento\Backend\App\Action\Context $context,
-        \Magento\Framework\View\Result\PageFactory $resultPageFactory,
-        ScopeConfigInterface $scopeConfig,
-        ResourceConnection $resourceConnection
-    ) {
+        Context        $context,
+        PageFactory $resultPageFactory,
+        ScopeConfigInterface                       $scopeConfig,
+        ResourceConnection                         $resourceConnection
+    )
+    {
         parent::__construct($context);
         $this->resultPageFactory = $resultPageFactory;
         $this->scopeConfig = $scopeConfig;
@@ -39,7 +53,7 @@ class SyncNews extends \Magento\Backend\App\Action
     }
 
     /**
-     * @return \Magento\Framework\Controller\ResultInterface
+     * @return ResultInterface
      */
     public function execute()
     {
@@ -68,13 +82,16 @@ class SyncNews extends \Magento\Backend\App\Action
             }
             $connection->commit();
             $this->messageManager->addSuccessMessage(__('Business news update successful.'));
-        } catch (\Exception $exception) {
+        } catch (Exception $exception) {
             $this->messageManager->addErrorMessage(__($exception->getMessage()));
         }
 
         return $this->resultRedirectFactory->create()->setPath('*');
     }
 
+    /**
+     * @return bool
+     */
     protected function _isAllowed()
     {
         return $this->_authorization->isAllowed('MageStore_CustomWidget::business_news');

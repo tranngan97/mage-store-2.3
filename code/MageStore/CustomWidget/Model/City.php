@@ -6,10 +6,12 @@
 
 namespace MageStore\CustomWidget\Model;
 
-class City extends \Magento\Framework\Model\AbstractModel
+use Magento\Framework\Model\AbstractModel;
+
+class City extends AbstractModel
 {
     protected function _construct()
     {
-        $this->_init(\MageStore\CustomWidget\Model\ResourceModel\City::class);
+        $this->_init(ResourceModel\City::class);
     }
 }

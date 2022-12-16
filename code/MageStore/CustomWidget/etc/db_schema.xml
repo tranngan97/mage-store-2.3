@@ -8,7 +8,8 @@
 <schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
     <table name="open_weather_city_list">
-        <column xsi:type="int" name="entity_id" identity="true" padding="20" unsigned="true" nullable="false" comment="Entity Id"/>
+        <column xsi:type="int" name="entity_id" identity="true" padding="20" unsigned="true" nullable="false"
+                comment="Entity Id"/>
         <column xsi:type="varchar" name="city_id" length="255" nullable="true" comment="City Id"/>
         <column xsi:type="varchar" name="city_name" length="255" nullable="true" comment="City Name"/>
         <column xsi:type="varchar" name="country_id" length="255" nullable="true" comment="Country ID"/>
@@ -21,7 +22,8 @@
     </table>
 
     <table name="exchange_currency_rates">
-        <column xsi:type="int" name="entity_id" identity="true" padding="20" unsigned="true" nullable="false" comment="Entity Id"/>
+        <column xsi:type="int" name="entity_id" identity="true" padding="20" unsigned="true" nullable="false"
+                comment="Entity Id"/>
         <column xsi:type="varchar" name="name" length="255" nullable="true" comment="Currency Name"/>
         <column xsi:type="varchar" name="code" length="255" nullable="true" comment="Currency Code"/>
         <column xsi:type="varchar" name="buy" length="255" nullable="true" comment="Buy Rate"/>
@@ -33,7 +35,8 @@
     </table>
 
     <table name="business_news">
-        <column xsi:type="int" name="entity_id" identity="true" padding="20" unsigned="true" nullable="false" comment="Entity Id"/>
+        <column xsi:type="int" name="entity_id" identity="true" padding="20" unsigned="true" nullable="false"
+                comment="Entity Id"/>
         <column xsi:type="varchar" name="title" length="255" nullable="true" comment="News Title"/>
         <column xsi:type="varchar" name="description" length="255" nullable="true" comment="News Description"/>
         <column xsi:type="varchar" name="pubdate" length="255" nullable="true" comment="News Pubdate"/>

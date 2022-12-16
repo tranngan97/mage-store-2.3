@@ -5,7 +5,10 @@
  * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
+
 namespace MageStore\CustomWidget\Api;
+
+use MageStore\CustomWidget\Api\Data\WeatherStateDataInterface;
 
 /**
  * Get weather by location.
@@ -19,8 +22,8 @@ interface WeatherStateInterface
      *
      * @param string $lat
      * @param string $long
-     * @param $metric
-     * @return bool
+     * @param string $metric
+     * @return WeatherStateDataInterface
      */
     public function getByLatLong(
         $lat,

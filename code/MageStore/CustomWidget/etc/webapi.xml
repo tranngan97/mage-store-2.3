@@ -12,21 +12,7 @@
     <route url="/V1/widget/weather" method="GET">
         <service class="MageStore\CustomWidget\Api\WeatherStateInterface" method="getByLatLong"/>
         <resources>
-            <resource ref="MageStore_CustomWidget::widget" />
-        </resources>
-    </route>
-
-    <route url="/V1/widget/currency/rates" method="GET">
-        <service class="MageStore\CustomWidget\Api\CurrencyConverterInterface" method="getAllRate"/>
-        <resources>
-            <resource ref="MageStore_CustomWidget::widget" />
-        </resources>
-    </route>
-
-    <route url="/V1/widget/news" method="GET">
-        <service class="MageStore\CustomWidget\Api\BusinessNewsInterface" method="getNewsList"/>
-        <resources>
-            <resource ref="MageStore_CustomWidget::widget" />
+            <resource ref="MageStore_CustomWidget::widget"/>
         </resources>
     </route>
 </routes>

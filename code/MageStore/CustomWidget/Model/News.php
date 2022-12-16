@@ -6,10 +6,12 @@
 
 namespace MageStore\CustomWidget\Model;
 
-class News extends \Magento\Framework\Model\AbstractModel
+use Magento\Framework\Model\AbstractModel;
+
+class News extends AbstractModel
 {
     protected function _construct()
     {
-        $this->_init(\MageStore\CustomWidget\Model\ResourceModel\News::class);
+        $this->_init(ResourceModel\News::class);
     }
 }

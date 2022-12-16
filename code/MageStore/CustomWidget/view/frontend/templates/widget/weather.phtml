@@ -7,7 +7,7 @@ $cityList = $block->getCitySelectData();
 ?>
 <div id="openweathermap-widget-15"></div>
 <script>
-    require(['jquery'], function ($){
+    require(['jquery'], function ($) {
         $(document).ready(function () {
             window.myWidgetParam ? window.myWidgetParam : window.myWidgetParam = [];
             initWidget('<?= $cityId ?>', '<?= $apiKey ?>', '<?= $unit ?>');
@@ -21,7 +21,7 @@ $cityList = $block->getCitySelectData();
                 units: unit,
                 containerid: 'openweathermap-widget-15'
             });
-            (function() {
+            (function () {
                 var script = document.createElement('script');
                 script.async = true;
                 script.charset = "utf-8";

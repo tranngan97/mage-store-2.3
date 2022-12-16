@@ -3,21 +3,21 @@ $rates = $block->getCurrencyRates();
 ?>
 <table class="currency-data-table">
     <thead>
-        <td><span><?= __('Currency Code')?></span></td>
-        <td><span><?= __('Currency Name')?></span></td>
-        <td><span><?= __('Buy')?></span></td>
-        <td><span><?= __('Transfer')?></span></td>
-        <td><span><?= __('Sell')?></span></td>
+    <td><span><?= __('Currency Code') ?></span></td>
+    <td><span><?= __('Currency Name') ?></span></td>
+    <td><span><?= __('Buy') ?></span></td>
+    <td><span><?= __('Transfer') ?></span></td>
+    <td><span><?= __('Sell') ?></span></td>
     </thead>
     <tbody>
-        <?php foreach ($rates as $rate) :?>
-            <tr>
-                <td><?= $rate['code'] ?></td>
-                <td><?= $rate['name'] ?></td>
-                <td><?= $rate['buy'] ?></td>
-                <td><?= $rate['transfer'] ?></td>
-                <td><?= $rate['sell'] ?></td>
-            </tr>
-        <?php endforeach; ?>
+    <?php foreach ($rates as $rate) : ?>
+        <tr>
+            <td><?= $rate['code'] ?></td>
+            <td><?= $rate['name'] ?></td>
+            <td><?= $rate['buy'] ?></td>
+            <td><?= $rate['transfer'] ?></td>
+            <td><?= $rate['sell'] ?></td>
+        </tr>
+    <?php endforeach; ?>
     </tbody>
 </table>

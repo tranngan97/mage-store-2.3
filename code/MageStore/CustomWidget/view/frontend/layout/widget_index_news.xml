@@ -5,10 +5,12 @@
  * See COPYING.txt for license details.
  */
 -->
-<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="2columns-right" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="2columns-right"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
         <referenceContainer name="content">
-            <block class="MageStore\CustomWidget\Block\News" name="business.news" template="MageStore_CustomWidget::widget/news.phtml"/>
+            <block class="MageStore\CustomWidget\Block\News" name="business.news"
+                   template="MageStore_CustomWidget::widget/news.phtml"/>
         </referenceContainer>
     </body>
 </page>

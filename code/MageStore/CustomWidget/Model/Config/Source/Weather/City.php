@@ -3,15 +3,29 @@
  * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
+
 namespace MageStore\CustomWidget\Model\Config\Source\Weather;
+
+use Magento\Framework\Option\ArrayInterface;
 use MageStore\CustomWidget\Model\ResourceModel\City\CollectionFactory;
-class City implements \Magento\Framework\Option\ArrayInterface
+
+/**
+ *
+ */
+class City implements ArrayInterface
 {
+    /**
+     * @var CollectionFactory
+     */
     protected $cityCollection;
 
+    /**
+     * @param CollectionFactory $cityCollection
+     */
     public function __construct(
         CollectionFactory $cityCollection
-    ) {
+    )
+    {
         $this->cityCollection = $cityCollection;
     }
 
@@ -50,6 +64,9 @@ class City implements \Magento\Framework\Option\ArrayInterface
         return $options;
     }
 
+    /**
+     * @return mixed
+     */
     protected function getCities()
     {
         return $this->cityCollection->create()->addFieldToFilter('country_id', 'VN');

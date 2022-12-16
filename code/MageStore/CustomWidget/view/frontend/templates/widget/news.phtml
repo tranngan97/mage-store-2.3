@@ -2,19 +2,20 @@
 $news = $block->getNews();
 ?>
 <div class="business-news">
-    <?php foreach ($news as $new) :?>
+    <?php foreach ($news->getData() as $new) : ?>
         <div class="item">
             <a href="<?= $block->escapeHtml($new['link']) ?>" class="news-item">
                 <div class="news-image">
                     <img src="https://www.amd.com/system/files/2018-11/10788-ryzen-chip-left-angle-960x548.png">
                 </div>
                 <div class="news-content">
-                    <p class="title"><?= $block->escapeHtml($new['title'])?></p>
+                    <p class="title"><?= $block->escapeHtml($new['title']) ?></p>
                     <p class="description"><?= !empty($new['description']) ? $block->escapeHtml($new['description']) : '' ?></p>
                     <span class="pubDate"><?= $block->escapeHtml($new['pubdate']) ?></span>
                 </div>
             </a>
         </div>
     <?php endforeach; ?>
-    <?= $block->getPagerHtml() ?>
 </div>
+<?= $block->getPagerHtml() ?>
+
