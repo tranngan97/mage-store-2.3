@@ -86,8 +86,7 @@ class SyncNews extends Action
             $this->messageManager->addErrorMessage(__($exception->getMessage()));
         }
 
-        $resultRedirect = $this->resultRedirectFactory->create();
-        return $resultRedirect->setPath('*/*/*');
+        return $this->resultRedirectFactory->create()->setPath('*/*/');
     }
 
     /**
