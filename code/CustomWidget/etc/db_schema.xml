@@ -42,6 +42,7 @@
         <column xsi:type="varchar" name="pubdate" length="255" nullable="true" comment="News Pubdate"/>
         <column xsi:type="varchar" name="link" length="255" nullable="true" comment="News Link"/>
         <column xsi:type="varchar" name="guid" length="255" nullable="true" comment="News GUID"/>
+        <column xsi:type="varchar" name="image_url" length="255" nullable="true" comment="News Image"/>
         <constraint xsi:type="primary" referenceId="PRIMARY">
             <column name="entity_id"/>
         </constraint>

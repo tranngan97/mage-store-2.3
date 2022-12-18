@@ -6,7 +6,7 @@ $news = $block->getNews();
         <div class="item">
             <a href="<?= $block->escapeHtml($new['link']) ?>" class="news-item">
                 <div class="news-image">
-                    <img src="https://www.amd.com/system/files/2018-11/10788-ryzen-chip-left-angle-960x548.png">
+                    <img src="<?= $block->escapeHtml($new['image_url']) ?>">
                 </div>
                 <div class="news-content">
                     <p class="title"><?= $block->escapeHtml($new['title']) ?></p>

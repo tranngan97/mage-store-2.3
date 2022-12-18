@@ -66,18 +66,25 @@ class SyncNews extends Action
             false,
             $ctx
         );
-        $content = json_encode(simplexml_load_string($xmlContent));
-        $xmlArray = json_decode($content, true);
-        $newsArray = $xmlArray['channel']['item'];
+        $xml =  simplexml_load_string($xmlContent, 'SimpleXMLElement', LIBXML_NOCDATA);
         $connection = $this->resourceConnection->getConnection();
         $connection->truncateTable('business_news');
-        $connection->beginTransaction();
         try {
-            foreach ($newsArray as $news) {
-                $news['description'] = !empty($news['description']) ? $news['description'] : '';
+            $connection->beginTransaction();
+            foreach ($xml->channel->item as $news) {
+                $description = explode('</a>', $news->description);
+                $descriptionImage = str_replace(['>', '"'], ['', ''], explode('src="', $description[0]));
+                $descriptionText = explode('</br>', $description[1]);
                 $connection->insert(
                     'business_news',
-                    $news
+                    [
+                        'title' => $news->title,
+                        'description' => $descriptionText[1],
+                        'pubdate' => $news->pubDate,
+                        'link' => $news->link,
+                        'guid' => $news->guid,
+                        'image_url' => $descriptionImage[1]
+                    ]
                 );
             }
             $connection->commit();
@@ -95,5 +102,13 @@ class SyncNews extends Action
     protected function _isAllowed()
     {
         return $this->_authorization->isAllowed('MageStore_CustomWidget::business_news');
+    }
+
+    protected function cdataFilter($matches)
+    {
+        $converted = htmlspecialchars($matches[1]);
+        $trimmed = trim($converted);
+        die('sadasd');
+        return $trimmed;
     }
 }
